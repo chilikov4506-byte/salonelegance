@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ВиК Про — Иван Петров | Водопроводчик София</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a1628;
+    --navy-mid: #112240;
+    --navy-light: #1a3355;
+    --yellow: #f5c518;
+    --yellow-dark: #d4a800;
+    --white: #f0f4f8;
+    --gray: #8899aa;
+    --red: #e63946;
+    --text: #cdd9e5;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--navy);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ─── UTILITY ─── */
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+  .yellow { color: var(--yellow); }
+  .section { padding: 80px 0; }
+
+  /* ─── HEADER / NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(10, 22, 40, 0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 2px solid var(--yellow);
+    padding: 0 24px;
+  }
+  nav .inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900; font-size: 1.6rem; letter-spacing: 1px;
+    color: var(--white); text-decoration: none;
+  }
+  .logo span { color: var(--yellow); }
+  nav a.cta-nav {
+    background: var(--yellow); color: var(--navy);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 1rem; letter-spacing: 1px;
+    padding: 10px 22px; text-decoration: none;
+    border: 2px solid var(--yellow);
+    transition: all 0.2s;
+  }
+  nav a.cta-nav:hover { background: transparent; color: var(--yellow); }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    position: relative;
+    padding-top: 64px;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 40px,
+        rgba(245,197,24,0.03) 40px,
+        rgba(245,197,24,0.03) 41px
+      );
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(245,197,24,0.12);
+    border: 1px solid rgba(245,197,24,0.4);
+    color: var(--yellow);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600; font-size: 0.85rem; letter-spacing: 2px;
+    padding: 6px 14px; margin-bottom: 24px;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-badge::before { content: '●'; font-size: 0.6rem; animation: blink 1.5s infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+  .hero h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(3rem, 8vw, 6rem);
+    line-height: 0.95;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    margin-bottom: 16px;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+  .hero h1 em {
+    font-style: normal; color: var(--yellow);
+    display: block;
+  }
+  .hero-sub {
+    font-size: 1.2rem; color: var(--gray);
+    max-width: 520px; line-height: 1.6;
+    margin-bottom: 40px;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+  .hero-sub strong { color: var(--white); }
+
+  .hero-ctas {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--yellow); color: var(--navy);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 1.2rem; letter-spacing: 1px;
+    padding: 16px 32px; text-decoration: none;
+    border: 2px solid var(--yellow);
+    transition: all 0.2s;
+  }
+  .btn-primary:hover { background: var(--yellow-dark); border-color: var(--yellow-dark); }
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: transparent; color: var(--white);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 1.2rem; letter-spacing: 1px;
+    padding: 16px 32px; text-decoration: none;
+    border: 2px solid rgba(255,255,255,0.3);
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--white); }
+
+  .hero-stats {
+    display: flex; gap: 40px; margin-top: 56px; flex-wrap: wrap;
+    animation: fadeUp 0.6s 0.4s ease both;
+  }
+  .stat-item { border-left: 3px solid var(--yellow); padding-left: 16px; }
+  .stat-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900; font-size: 2.2rem; color: var(--white);
+    line-height: 1;
+  }
+  .stat-label { font-size: 0.8rem; color: var(--gray); letter-spacing: 1px; text-transform: uppercase; margin-top: 4px; }
+
+  .hero-inner {
+    display: flex; align-items: center;
+  }
+  .hero-text { flex: 0 0 58%; }
+  .hero-icon-col {
+    flex: 0 0 42%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16rem; opacity: 0.18; line-height: 1;
+    pointer-events: none;
+    animation: fadeUp 1s 0.5s ease both;
+    filter: drop-shadow(0 0 60px rgba(245,197,24,0.25));
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── URGENT STRIP ─── */
+  .urgent-strip {
+    background: var(--red);
+    padding: 18px 0;
+    text-align: center;
+  }
+  .urgent-strip p {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 1.3rem; letter-spacing: 1px;
+    color: #fff;
+  }
+  .urgent-strip a { color: #fff; text-decoration: underline; }
+
+  /* ─── SERVICES ─── */
+  .services { background: var(--navy-mid); }
+  .section-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600; font-size: 0.8rem; letter-spacing: 3px;
+    color: var(--yellow); text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900; font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--white); text-transform: uppercase;
+    line-height: 1.1; margin-bottom: 48px;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2px;
+  }
+  .service-card {
+    background: var(--navy);
+    padding: 32px 28px;
+    border-top: 3px solid transparent;
+    transition: all 0.25s;
+    position: relative; overflow: hidden;
+  }
+  .service-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+    background: var(--yellow); transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .service-card:hover { background: var(--navy-light); }
+  .service-card:hover::after { transform: scaleX(1); }
+  .service-icon { font-size: 2.4rem; margin-bottom: 16px; display: block; }
+  .service-card h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 1.3rem; color: var(--white);
+    text-transform: uppercase; margin-bottom: 10px; letter-spacing: 0.5px;
+  }
+  .service-card p { font-size: 0.9rem; color: var(--gray); line-height: 1.6; }
+
+  /* ─── WHY US ─── */
+  .why { background: var(--navy); }
+  .why-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 48px; align-items: center;
+  }
+  @media(max-width: 700px) { .why-grid { grid-template-columns: 1fr; } }
+  .why-list { list-style: none; display: flex; flex-direction: column; gap: 20px; }
+  .why-list li {
+    display: flex; gap: 16px; align-items: flex-start;
+  }
+  .why-icon {
+    width: 44px; height: 44px; flex-shrink: 0;
+    background: rgba(245,197,24,0.1);
+    border: 1px solid rgba(245,197,24,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+  }
+  .why-list h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 1.05rem; color: var(--white);
+    text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;
+  }
+  .why-list p { font-size: 0.88rem; color: var(--gray); line-height: 1.5; }
+
+  .why-visual {
+    background: var(--navy-mid);
+    border: 1px solid rgba(245,197,24,0.2);
+    padding: 40px 36px;
+    position: relative;
+  }
+  .why-visual::before {
+    content: 'ВиК ПРО';
+    position: absolute; top: -14px; left: 24px;
+    background: var(--yellow); color: var(--navy);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900; font-size: 0.85rem; letter-spacing: 2px;
+    padding: 2px 12px;
+  }
+  .guarantee-big {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900; font-size: 5rem; color: var(--yellow);
+    line-height: 1; margin-bottom: 8px;
+  }
+  .guarantee-sub {
+    font-size: 1rem; color: var(--white); margin-bottom: 24px; line-height: 1.4;
+  }
+  .coverage-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .coverage-list li {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 0.9rem; color: var(--text);
+  }
+  .coverage-list li::before { content: '✓'; color: var(--yellow); font-weight: 700; }
+
+  /* ─── REVIEWS ─── */
+  .reviews { background: var(--navy-mid); }
+  .reviews-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+  .review-card {
+    background: var(--navy);
+    border-left: 3px solid var(--yellow);
+    padding: 28px 24px;
+  }
+  .stars { color: var(--yellow); font-size: 1rem; margin-bottom: 14px; letter-spacing: 2px; }
+  .review-text { font-size: 0.95rem; color: var(--text); line-height: 1.6; margin-bottom: 18px; font-style: italic; }
+  .reviewer {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; color: var(--white); font-size: 1rem;
+    text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .reviewer span { color: var(--gray); font-weight: 400; font-size: 0.85rem; text-transform: none; letter-spacing: 0; }
+
+  /* ─── CONTACT ─── */
+  .contact { background: var(--navy); }
+  .contact-inner {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 64px; align-items: start;
+  }
+  @media(max-width: 700px) { .contact-inner { grid-template-columns: 1fr; gap: 40px; } }
+
+  .contact-info { display: flex; flex-direction: column; gap: 24px; }
+  .contact-item {
+    display: flex; gap: 16px; align-items: flex-start;
+  }
+  .contact-icon {
+    width: 48px; height: 48px; flex-shrink: 0;
+    background: var(--yellow); color: var(--navy);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+  }
+  .contact-item h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 0.85rem; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--gray); margin-bottom: 4px;
+  }
+  .contact-item p { color: var(--white); font-size: 1.05rem; }
+  .contact-item a { color: var(--yellow); text-decoration: none; font-size: 1.4rem; font-weight: 600; }
+  .contact-item a:hover { text-decoration: underline; }
+
+  .contact-form { display: flex; flex-direction: column; gap: 16px; }
+  .contact-form label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600; font-size: 0.8rem; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--gray);
+    display: block; margin-bottom: 6px;
+  }
+  .contact-form input,
+  .contact-form textarea,
+  .contact-form select {
+    width: 100%;
+    background: var(--navy-mid);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 2px solid var(--yellow);
+    color: var(--white); font-family: 'Barlow', sans-serif; font-size: 1rem;
+    padding: 12px 14px; outline: none;
+    transition: border-color 0.2s;
+  }
+  .contact-form input:focus,
+  .contact-form textarea:focus { border-color: var(--yellow); background: var(--navy-light); }
+  .contact-form textarea { resize: vertical; min-height: 110px; }
+  .btn-submit {
+    background: var(--yellow); color: var(--navy);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900; font-size: 1.2rem; letter-spacing: 2px;
+    text-transform: uppercase;
+    border: none; cursor: pointer;
+    padding: 16px 32px; width: 100%;
+    transition: background 0.2s;
+  }
+  .btn-submit:hover { background: var(--yellow-dark); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #050e1a;
+    border-top: 2px solid var(--yellow);
+    padding: 32px 0;
+    text-align: center;
+  }
+  footer p { font-size: 0.85rem; color: var(--gray); }
+  footer strong { color: var(--white); }
+
+  /* ─── PHONE FLOAT ─── */
+  .phone-float {
+    position: fixed; bottom: 28px; right: 28px; z-index: 200;
+    background: var(--yellow); color: var(--navy);
+    width: 60px; height: 60px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem; text-decoration: none;
+    box-shadow: 0 4px 24px rgba(245,197,24,0.5);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%,100%{ box-shadow: 0 4px 24px rgba(245,197,24,0.5); }
+    50%{ box-shadow: 0 4px 40px rgba(245,197,24,0.9); }
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media(max-width: 600px) {
+    .hero-stats { gap: 24px; }
+    .hero-ctas { flex-direction: column; }
+    .btn-primary, .btn-secondary { justify-content: center; }
+    .hero-icon-col { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="inner">
+    <a class="logo" href="#">ВиК<span>Про</span></a>
+    <a class="cta-nav" href="tel:+359888123456">📞 0888 123 456</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-badge">ДЕНОНОЩНА АВАРИЙНА СЛУЖБА — СОФИЯ</div>
+        <h1>
+          Водопроводчик<br>
+          <em>когото можеш</em>
+          да се обадиш
+        </h1>
+        <p class="hero-sub">
+          <strong>Иван Петров — ВиК Про</strong> — над 15 години опит в
+          отстраняване на течове, отпушване на канали и ВиК ремонти в
+          София и района. Реагираме до <strong>60 минути</strong>.
+        </p>
+        <div class="hero-ctas">
+          <a class="btn-primary" href="tel:+359888123456">📞 Обади се сега</a>
+          <a class="btn-secondary" href="#contact">Изпрати заявка →</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <div class="stat-num">15+</div>
+            <div class="stat-label">Години опит</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">500+</div>
+            <div class="stat-label">Доволни клиенти</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">24/7</div>
+            <div class="stat-label">Аварийна помощ</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">≤60'</div>
+            <div class="stat-label">Реакция</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-icon-col">🔧</div>
+    </div>
+  </div>
+</section>
+
+<!-- URGENT STRIP -->
+<div class="urgent-strip">
+  <p>🚨 Авария? Обади се СЕГА на <a href="tel:+359888123456">0888 123 456</a> — работим 24/7, включително празници!</p>
+</div>
+
+<!-- SERVICES -->
+<section class="services section">
+  <div class="container">
+    <div class="section-label">Какво правим</div>
+    <div class="section-title">Нашите услуги</div>
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="service-icon">🚿</span>
+        <h3>Отпушване на канали</h3>
+        <p>Мивки, тоалетни, сифони, вани, шахти и септични ями — ръчно и машинно.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">💧</span>
+        <h3>Ремонт на течове</h3>
+        <p>Спукани тръби, скрити течове, меки връзки. Намираме и отстраняваме бързо.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🔩</span>
+        <h3>Монтаж на санитария</h3>
+        <p>Бойлери, смесители, тоалетни казанчета, мивки, душ кабини, вани.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🏗️</span>
+        <h3>ВиК инсталации</h3>
+        <p>Цялостно изграждане и ремонт на водопроводни и канализационни инсталации.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🌡️</span>
+        <h3>Парно и бойлери</h3>
+        <p>Монтаж, демонтаж и ремонт на радиатори, помпи и отоплителни системи.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">⚡</span>
+        <h3>Аварийни извиквания</h3>
+        <p>Денонощна помощ при ВиК аварии — включително събота, неделя и официални празници.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why section">
+  <div class="container">
+    <div class="section-label">Защо нас</div>
+    <div class="section-title">Какво ни прави различни</div>
+    <div class="why-grid">
+      <ul class="why-list">
+        <li>
+          <div class="why-icon">⚡</div>
+          <div>
+            <h4>Пристигаме до 60 минути</h4>
+            <p>Покриваме цяла София — при авария всяка минута е важна.</p>
+          </div>
+        </li>
+        <li>
+          <div class="why-icon">💰</div>
+          <div>
+            <h4>Ясни цени без изненади</h4>
+            <p>Казваме цената преди да започнем работа. Без скрити такси.</p>
+          </div>
+        </li>
+        <li>
+          <div class="why-icon">🛡️</div>
+          <div>
+            <h4>Гаранция на труда</h4>
+            <p>Даваме 12-месечна гаранция на всяка извършена услуга.</p>
+          </div>
+        </li>
+        <li>
+          <div class="why-icon">🧹</div>
+          <div>
+            <h4>Оставяме чистота след нас</h4>
+            <p>Почистваме след работа — дома ви остава така, както го заварихме.</p>
+          </div>
+        </li>
+        <li>
+          <div class="why-icon">📋</div>
+          <div>
+            <h4>15+ години опит</h4>
+            <p>Иван Петров — лично на обект, не изпраща неопитни помощници.</p>
+          </div>
+        </li>
+      </ul>
+      <div class="why-visual">
+        <div class="guarantee-big">12М</div>
+        <div class="guarantee-sub">Гаранция на труда<br>за всяка услуга</div>
+        <ul class="coverage-list">
+          <li>Цяла София и Софийска област</li>
+          <li>Работим 24 часа, 7 дни в седмицата</li>
+          <li>Реагираме до 60 минути</li>
+          <li>Официален майстор с опит от 2009 г.</li>
+          <li>Стотици препоръки от доволни клиенти</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews section">
+  <div class="container">
+    <div class="section-label">Клиенти</div>
+    <div class="section-title">Какво казват за нас</div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">„Иван дойде за 40 минути при нас в Люлин. Спукана тръба под мивката — оправи я за час, почисти след себе си. Препоръчвам на всички!"</p>
+        <div class="reviewer">Мария С. <span>— кв. Люлин, София</span></div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">„Запушен казанче в събота вечер — мислех, че никой няма да дойде. Иван пристигна до час, оправи проблема и ми каза цената предварително. Браво!"</p>
+        <div class="reviewer">Георги М. <span>— кв. Младост, София</span></div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">„Цялостна смяна на ВиК инсталацията в банята. Работа на ниво, точност, чистота. Определено ще се обърна отново при нужда."</p>
+        <div class="reviewer">Елена В. <span>— кв. Лозенец, София</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact section" id="contact">
+  <div class="container">
+    <div class="section-label">Свържете се</div>
+    <div class="section-title">Заявете услуга</div>
+    <div class="contact-inner">
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <h4>Телефон</h4>
+            <a href="tel:+359888123456">0888 123 456</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🕐</div>
+          <div>
+            <h4>Работно време</h4>
+            <p>Понеделник – Неделя: 07:00 – 22:00<br>
+            <strong style="color:var(--yellow)">Аварии: 24/7</strong></p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <h4>Зона на покритие</h4>
+            <p>София и Софийска област<br>Всички квартали и кв. центрове</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <h4>Имейл</h4>
+            <p>vikpro.sofia@gmail.com</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <div>
+          <label>Вашето име</label>
+          <input type="text" placeholder="Иван Иванов">
+        </div>
+        <div>
+          <label>Телефон за връзка</label>
+          <input type="tel" placeholder="08XX XXX XXX">
+        </div>
+        <div>
+          <label>Вид услуга</label>
+          <select>
+            <option>— Изберете услуга —</option>
+            <option>Отпушване на канал</option>
+            <option>Ремонт на теч</option>
+            <option>Монтаж на санитария</option>
+            <option>ВиК инсталация</option>
+            <option>Парно / бойлер</option>
+            <option>Аварийно извикване</option>
+            <option>Друго</option>
+          </select>
+        </div>
+        <div>
+          <label>Описание (по желание)</label>
+          <textarea placeholder="Опишете накратко проблема..."></textarea>
+        </div>
+        <button class="btn-submit" type="button">Изпрати заявка →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p><strong>ВиК Про — Иван Петров</strong> | Водопроводчик София | 0888 123 456</p>
+    <p style="margin-top:8px">© 2025 ВиК Про. Всички права запазени.</p>
+  </div>
+</footer>
+
+<!-- FLOATING PHONE BUTTON -->
+<a class="phone-float" href="tel:+359888123456" title="Обади се">📞</a>
+
+</body>
+</html>
